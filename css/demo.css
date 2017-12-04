@@ -1,0 +1,149 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  line-height: 24px;
+  font-size: 14px;
+  color: #4c4c4c;
+  font-family: "Microsoft YaHei";
+}
+.notice_main {
+    background: #fff;
+    padding-bottom: 60px;
+}
+.w_wp {
+    width: 1200px;
+    margin: 0 auto;
+}
+.clearfix {
+    zoom: 1;
+}
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.nt_left {
+    width: 860px;
+    float: left;
+    padding-right: 20px;
+    border-right: 1px solid #eeeeee;
+    min-height: 400px;
+}
+.nt_newlist {
+    padding: 30px 10px 30px 0;
+}
+.nt_newlist li {
+    padding: 20px 0;
+    min-height: 94px;
+}
+.nt_newlist li .date {
+    width: 80px;
+    height: 80px;
+    background: #87aeca;
+    color: #fff;
+    float: left;
+    text-align: center;
+    font-family: arial;
+    margin-top: 7px;
+}
+.nt_newlist li .date strong {
+    display: block;
+    padding-top: 10px;
+    line-height: 36px;
+    font-size: 36px;
+    font-weight: bold;
+}
+.nt_newlist li .date span {
+    display: block;
+    line-height: 24px;
+    font-size: 15px;
+}
+.nt_newlist li .cont {
+    margin-left: 110px;
+}
+.nt_newlist li .cont h5 {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 30px;
+    color: #333;
+    margin-bottom: 8px;
+}
+.nt_newlist li .cont p {
+    font-size: 16px;
+    color: #999;
+    line-height: 28px;
+}
+.paging {
+    padding: 20px 0 10px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+}
+.paging .link {
+    display: inline-block;
+    vertical-align: middle;
+}
+.paging .link a {
+    display: inline-block;
+    text-align: center;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    background: #f3f3f3;
+    color: #333;
+    overflow: hidden;
+    margin: 0 2px;
+    vertical-align: middle;
+}
+.paging .link a.home, .paging .link a.back {
+    width: 60px;
+}
+.paging .link a.prev {
+    background: #f3f3f3 url(../images/db_arrow02.png) no-repeat 0 0;
+}
+.paging .link a.prev, .paging .link a.next {
+    font-size: 0;
+    line-height: 0;
+}
+.paging .link a.on, .paging .link a.on:hover {
+    color: #fff;
+    background: #248ecd;
+}
+.paging .link a.next {
+    background: #f3f3f3 url(../images/db_arrow02.png) no-repeat right 0;
+}
+.paging .info {
+    margin: 0 15px 0 5px;
+    display: inline-block;
+}
+.paging .opea {
+    display: inline-block;
+}
+.paging .opea input {
+    display: inline-block;
+    vertical-align: middle;
+    width: 60px;
+    height: 20px;
+    line-height: 20px;
+    padding: 10px 0;
+    text-align: center;
+    border: 0 none;
+    background: #f3f3f3;
+    font-family: "microsoft yahei";
+    font-size: 16px;
+    color: #333;
+}
+.paging .opea a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: #248ecd;
+    color: #fff;
+    margin-left: 10px;
+}
+em {
+    font-style: normal;
+}
+a {
+	text-decoration: none;
+}
