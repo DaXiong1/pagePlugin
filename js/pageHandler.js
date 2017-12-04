@@ -60,7 +60,7 @@ function initPageShow(){
 	$("#total").text(allPageNum+1);
 	var html = '<a class="home" href="javascript:void(0);">首页</a><a class="prev" href="javascript:void(0);">&lt;</a>';
 	for(var i = 0;i < allPageNum+1;i++){
-		if(i < countsPerPage){
+		if(i < countsPageOnShow){
 			//加入队列
 			onShowPageNumQueue.push(i)
 			html += '<a num='+i+' href="javascript:void(0);">'+(i+1)+'</a>';
@@ -127,30 +127,30 @@ function pageNumHandler(cur,type){
 	var allPages = Math.floor(allCounts/countsPerPage)+1
 	cur = parseInt(cur)
 	//不足5页，什么都不做
-	if(allPages <= countsPerPage){
+	if(allPages <= countsPageOnShow){
 		return;
 	}else{//大于5页
 		if(type == 'prev'){
-			if(cur < Math.floor(countsPerPage/2)){//0,1,2
+			if(cur < Math.floor(countsPageOnShow/2)){//0,1,2
 				return
-			}else if(cur >= (allPages - Math.floor(countsPerPage/2) - 1)){//最后三个
+			}else if(cur >= (allPages - Math.floor(countsPageOnShow/2) - 1)){//最后三个
 				return
 			}else{//5 6 7 8 9
-				onShowPageNumQueue.pop(onShowPageNumQueue[countsPerPage-1])//最后一个元素出列
+				onShowPageNumQueue.pop(onShowPageNumQueue[countsPageOnShow-1])//最后一个元素出列
 				onShowPageNumQueue.unshift(parseInt(onShowPageNumQueue[0])-1)//前一个元素入列
 			}
 		}else if(type == 'next'){
-			if(cur <= Math.floor(countsPerPage/2)){//0,1,2
+			if(cur <= Math.floor(countsPageOnShow/2)){//0,1,2
 				return
-			}else if(cur >= allPages - Math.floor(countsPerPage/2)){//最后三个
+			}else if(cur >= allPages - Math.floor(countsPageOnShow/2)){//最后三个
 				return
 			}else{
-				onShowPageNumQueue.push(onShowPageNumQueue[countsPerPage-1]+1)//后一个元素入列
+				onShowPageNumQueue.push(onShowPageNumQueue[countsPageOnShow-1]+1)//后一个元素入列
 				onShowPageNumQueue.shift(onShowPageNumQueue[0])//第一个元素出列
 			}
 		}else if(type == 'home'){//首页
 			onShowPageNumQueue.length = 0
-			for(var i = 0;i < countsPerPage;i++){
+			for(var i = 0;i < countsPageOnShow;i++){
 				onShowPageNumQueue.push(i)
 			}
 		}else if(type == 'back'){//尾页
@@ -160,13 +160,13 @@ function pageNumHandler(cur,type){
 			}
 		}else{//直接访问某个page
 			//检测边界
-			if(cur <= Math.floor(countsPerPage/2)){//0,1,2
+			if(cur <= Math.floor(countsPageOnShow/2)){//0,1,2
 				pageNumHandler('','home')
-			}else if(cur >= allPages - Math.floor(countsPerPage/2)){//最后三个
+			}else if(cur >= allPages - Math.floor(countsPageOnShow/2)){//最后三个
 				pageNumHandler('','back')
 			}else{
 				onShowPageNumQueue.length = 0
-				for(var i = cur - Math.floor(countsPerPage/2);i <= cur + Math.floor(countsPerPage/2);i++){
+				for(var i = cur - Math.floor(countsPageOnShow/2);i <= cur + Math.floor(countsPageOnShow/2);i++){
 					onShowPageNumQueue.push(i)
 				}
 			}
