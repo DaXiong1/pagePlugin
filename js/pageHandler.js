@@ -57,10 +57,11 @@ function forEachHtml(results){
 
 function initPageShow(){
 	var allPageNum = Math.floor(allCounts/countsPerPage); //共有的页数
-	$("#total").text(allPageNum+1);
+		var allPageNumTemp = allCounts%countsPerPage == 0?allPageNum:allPageNum+1;
+	$("#total").text(allPageNumTemp);
 	var html = '<a class="home" href="javascript:void(0);">首页</a><a class="prev" href="javascript:void(0);">&lt;</a>';
-	for(var i = 0;i < allPageNum+1;i++){
-		if(i < countsPageOnShow){
+	for(var i = 0;i < countsPageOnShow;i++){
+		if(i < countsPerPage){
 			//加入队列
 			onShowPageNumQueue.push(i)
 			html += '<a num='+i+' href="javascript:void(0);">'+(i+1)+'</a>';
@@ -76,39 +77,24 @@ function initPageShow(){
 			if(pageBtnType == 'home'){//首页
 				curPoint = 0
 			}else if(pageBtnType == 'back'){//尾页
-				curPoint = allPageNum
-			}else if(pageBtnType == 'prev'){//前页
-				curPoint--
-			}else if(pageBtnType == 'next'){//后页
-				curPoint++
-			}else{
-				curPoint = $(this).attr("num")
-			}
-			if(curPoint < 0 || curPoint > allPageNum){
-				return
-			}else{
-				initPage(curPoint)
-				initHighPageNum();
-				pageNumHandler(curPoint,pageBtnType)
-			}
+					curPoint = allCounts%countsPerPage == 0?allPageNum-1:allPageNum;
+				}else if(pageBtnType == 'prev'){//前页
+					curPoint--
+				}else if(pageBtnType == 'next'){//后页
+					curPoint++
+				}else{
+					curPoint = $(this).attr("num")
+				}
+				if(curPoint < 0 || curPoint > allPageNum){
+					return
+				}else{
+					initPage(curBusiness,curPoint)
+					initHighPageNum();
+					pageNumHandler(curPoint,pageBtnType)
+				}
+			})
 		})
-	})
-	initHighPageNum();
-}
-
-//处理高亮页码
-function initHighPageNum(){
-	$("#link").find('a[num='+curPoint+']').addClass('on')
-	$("#link").find('a:not([num='+curPoint+'])').removeClass('on')
-}
-
-function creatPageObj(p){
-	if(pageObj.length == countsPerPage-1){//里面有countsPerPage个对象，停止push，将pageObj添加至队列
-		pageObj.push(p)
-		if(!queue[curPoint])
-			queue[curPoint] = deepClone(pageObj)
-		pageObj.length = 0;//清空数组
-		return;
+		initHighPageNum();
 	}
 	pageObj.push(p);
 	//处理尾页数据不足countsPerPage的情况
